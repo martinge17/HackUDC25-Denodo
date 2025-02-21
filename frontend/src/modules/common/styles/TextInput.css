@@ -1,0 +1,83 @@
+.card {
+    position: relative;
+    width: 80%;
+    height: auto;
+    min-height: 100px;
+    color: white;
+    background: #444;
+    border-radius: 14px;
+}
+
+.bg {
+    position: absolute;
+    inset: -4px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.bg::before {
+    content: '';
+    position: absolute;
+    aspect-ratio: 1/1;
+    top: 50%;
+    left: 50%;
+    min-width: 150%;
+    min-height: 150%;
+    background-image: conic-gradient(
+            var(--color-primary-darkest),
+            var(--color-primary-medium),
+            var(--color-primary-dark),
+            var(--color-primary-darkest),
+            var(--color-primary-medium),
+            var(--color-primary-dark)
+
+    );
+    animation: speeen 4s linear infinite;
+    transform-origin: 0% 0%;
+    transform: rotate(0deg) translate(-50%, -50%);
+}
+
+@keyframes speeen {
+    from {
+        transform: rotate(0deg) translate(-50%, -50%);
+    }
+
+    to {
+        transform: rotate(360deg) translate(-50%, -50%);
+    }
+}
+
+.content {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+    border-radius: 14px;
+    background-color: var(--color-secondary-medium);
+    position: relative;
+    cursor: text;
+    box-sizing: border-box;
+}
+
+.content > textarea {
+    resize: none;
+    border-radius: 14px;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+    border: none;
+    background-color: var(--color-secondary-medium);
+    outline: none;
+    color: var(--color-white);
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 15px;
+    overflow-y: auto;
+}
+
+.content > input:focus {
+
+}
