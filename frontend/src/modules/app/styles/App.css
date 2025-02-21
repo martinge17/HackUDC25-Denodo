@@ -1,0 +1,7 @@
+.app-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2vh 93vh 5vh;
+  min-height: 100vh;
+  overflow: hidden;
+}

@@ -1,0 +1,11 @@
+# Archivos y carpetas de macOS
+.DS_Store
+
+# Archivos y carpetas de IntelliJ IDEA (JetBrains)
+.idea/
+
+# Archivos y carpetas de VS Code
+.vscode/
+
+# Node
+node_modules/

@@ -1,0 +1,57 @@
+:root {
+    /* Colores primarios */
+    --color-primary-lightest: #f8c5c3; /* Versión más clara del color principal */
+    --color-primary-light: #f37b74;    /* Versión clara del color principal */
+    --color-primary-medium: #f05149;   /* Color principal */
+    --color-primary-dark: #ad2f29;     /* Versión oscura del color principal */
+    --color-primary-darkest: #751e1a;  /* Versión más oscura del color principal */
+
+    /* Colores secundarios */
+    --color-secondary-lightest: #d8d4de; /* Versión más clara del color secundario */
+    --color-secondary-light: #6a6179;    /* Versión clara del color secundario */
+    --color-secondary-medium: #1b1525;   /* Color secundario */
+    --color-secondary-dark: #120e1a;     /* Versión oscura del color secundario */
+    --color-secondary-darkest: #0a0710;  /* Versión más oscura del color secundario */
+
+    /* Colores de éxito */
+    --color-success-lightest: #d8f0dd; /* Versión más clara del color de éxito */
+    --color-success-light: #68c77f;    /* Versión clara del color de éxito */
+    --color-success-medium: #34a355;   /* Color de éxito */
+    --color-success-dark: #23703b;     /* Versión oscura del color de éxito */
+    --color-success-darkest: #174e28;  /* Versión más oscura del color de éxito */
+
+    /* Colores de advertencia */
+    --color-warning-lightest: #f4e3c5; /* Versión más clara del color de advertencia */
+    --color-warning-light: #dab36c;    /* Versión clara del color de advertencia */
+    --color-warning-medium: #c3983f;   /* Color de advertencia */
+    --color-warning-dark: #8f6e2b;     /* Versión oscura del color de advertencia */
+    --color-warning-darkest: #5f491d;  /* Versión más oscura del color de advertencia */
+
+    /* Colores de error */
+    --color-error-lightest: #e8c5c4; /* Versión más clara del color de error */
+    --color-error-light: #a85e5d;    /* Versión clara del color de error */
+    --color-error-medium: #813231;   /* Color de error */
+    --color-error-dark: #5a2423;     /* Versión oscura del color de error */
+    --color-error-darkest: #3a1817;  /* Versión más oscura del color de error */
+
+    /* Colores neutros */
+    --color-white: #FFFFFF;          /* Blanco */
+    --color-black: #000000;          /* Negro */
+    --color-grey-light: #B0B0B0;     /* Gris claro */
+    --color-grey-medium: #808080;    /* Gris medio */
+    --color-grey-dark: #505050;      /* Gris oscuro */
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
