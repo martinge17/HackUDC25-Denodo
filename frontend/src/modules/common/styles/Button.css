@@ -1,0 +1,32 @@
+.button {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    font-size: 15px;
+    color: white;
+    border: 3px solid var(--color-primary-medium);
+    cursor: pointer;
+    position: relative;
+    background-color: var(--color-primary-medium);
+    text-decoration: none;
+    overflow: hidden;
+    z-index: 1;
+    font-family: inherit;
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-secondary-medium);
+    transform: translateX(-100%);
+    transition: all .3s;
+    z-index: -1;
+}
+
+.button:hover::before {
+    transform: translateX(0);
+}

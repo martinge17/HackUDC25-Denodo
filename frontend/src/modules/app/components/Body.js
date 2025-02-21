@@ -2,6 +2,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import AppGlobalComponents from "./AppGlobalComponents";
 
 import '../styles/Body.css'
+import Button from "../../common/components/Button";
 
 
 const Body = () => {
@@ -14,7 +15,9 @@ const Body = () => {
                 <Routes>
 
                     <Route path="/*" element={
-                        <div className="pruebas"></div>
+                        <div className="pruebas">
+
+                        </div>
                     }/>
 
                 </Routes>
