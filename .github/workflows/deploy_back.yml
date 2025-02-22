@@ -1,0 +1,20 @@
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - backend/
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: [self-hosted]
+    steps:
+    - name: Check out
+      uses: actions/checkout@v4
+
+    - name: Run deployment script on port
+      shell: bash
+      run: |
+        cd backend
+        chmod +x deploy.sh
+        DENODO_URL=${{ vars.DENODO_URL }} USER=${{ secrets.USER }} PASS=${{ secrets.PASS }} ./deploy.sh
