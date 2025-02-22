@@ -12,6 +12,13 @@ jobs:
     - name: Check out
       uses: actions/checkout@v4
 
+    - name: Debug
+      shell: bash
+      run: |
+        echo ${{ vars.DENODO_URL }}
+        echo ${{ secrets.USER }}
+        echo ${{ secrets.PASS }}
+
     - name: Run deployment script on port
       shell: bash
       run: |
