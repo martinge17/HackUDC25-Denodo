@@ -9,20 +9,22 @@ app = Flask(__name__)
 CORS(app)
 
 # URL del Servicio Denodo
-DENODO_URL = "http://localhost:8008/answerQuestion"
+DENODO_URL = os.environ.get("DENODO_URL")
 
 # Credenciales para autenticación básica en Denodo
-DENODO_AUTH = ("admin", "admin")
+DENODO_AUTH = (os.environ.get("USER"), os.environ.get("PASS"))
 
 # Ruta de la base de datos SQLite
 DATABASE = "data/history.db"
+
 
 # Crear tabla si no existe
 def init_db():
     os.makedirs(os.path.dirname(DATABASE), exist_ok=True)
     with sqlite3.connect(DATABASE) as conn:
         cursor = conn.cursor()
-        cursor.execute("""
+        cursor.execute(
+            """
             CREATE TABLE IF NOT EXISTS chat_history (
                 chat_id TEXT NOT NULL,
                 msg_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -30,12 +32,15 @@ def init_db():
                 respuesta TEXT NOT NULL,
                 timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
             )
-        """)
+        """
+        )
         conn.commit()
+
 
 init_db()  # Inicializar la base de datos al iniciar el servicio
 
-@app.route('/send', methods=['POST'])
+
+@app.route("/send", methods=["POST"])
 def send_message():
     data = request.json
     chat_id = data.get("chat_id", "")
@@ -62,11 +67,16 @@ def send_message():
             "vector_search_k": 5,
             "mode": "default",
             "disclaimer": True,
-            "verbose": True
+            "verbose": True,
         }
 
         # Enviar la consulta a Denodo
-        response = requests.get(DENODO_URL, params=params, auth=DENODO_AUTH, headers={"Accept": "application/json"})
+        response = requests.get(
+            DENODO_URL,
+            params=params,
+            auth=DENODO_AUTH,
+            headers={"Accept": "application/json"},
+        )
         response.raise_for_status()
 
         # Procesar la respuesta
@@ -78,25 +88,36 @@ def send_message():
             cursor = conn.cursor()
             cursor.execute(
                 "INSERT INTO chat_history (chat_id, pregunta, respuesta) VALUES (?, ?, ?)",
-                (chat_id, user_message, respuesta)
+                (chat_id, user_message, respuesta),
             )
             conn.commit()
 
-        return jsonify({"chat_id": chat_id, "pregunta": user_message, "respuesta": respuesta})
+        return jsonify(
+            {"chat_id": chat_id, "pregunta": user_message, "respuesta": respuesta}
+        )
 
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/history/<chat_id>', methods=['GET'])
+
+@app.route("/history/<chat_id>", methods=["GET"])
 def get_chat_history(chat_id):
     try:
         with sqlite3.connect(DATABASE) as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT msg_id, pregunta, respuesta, timestamp FROM chat_history WHERE chat_id = ? ORDER BY msg_id ASC", (chat_id,))
+            cursor.execute(
+                "SELECT msg_id, pregunta, respuesta, timestamp FROM chat_history WHERE chat_id = ? ORDER BY msg_id ASC",
+                (chat_id,),
+            )
             rows = cursor.fetchall()
 
         history = [
-            {"msg_id": row[0], "pregunta": row[1], "respuesta": row[2], "timestamp": row[3]}
+            {
+                "msg_id": row[0],
+                "pregunta": row[1],
+                "respuesta": row[2],
+                "timestamp": row[3],
+            }
             for row in rows
         ]
 
@@ -104,13 +125,16 @@ def get_chat_history(chat_id):
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-    
-@app.route('/chats', methods=['GET'])
+
+
+@app.route("/chats", methods=["GET"])
 def get_chat_ids():
     try:
         with sqlite3.connect(DATABASE) as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT DISTINCT chat_id FROM chat_history ORDER BY chat_id ASC")
+            cursor.execute(
+                "SELECT DISTINCT chat_id FROM chat_history ORDER BY chat_id ASC"
+            )
             rows = cursor.fetchall()
 
         chat_ids = [row[0] for row in rows]  # Extrae solo los chat_id
@@ -120,5 +144,6 @@ def get_chat_ids():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=80)
