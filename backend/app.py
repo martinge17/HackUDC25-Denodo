@@ -62,6 +62,7 @@ def send_message():
             "chat_provider": "googleaistudio",
             "chat_model": "gemini-1.5-flash",
             "vdp_database_names": "samples_bank",
+            "custom_instructions": "Eres un experto en los juegos olimpicos de 2024 y tambien en realizar consultas sql muy precisas",
             "expand_set_views": True,
             "markdown_response": True,
             "vector_search_k": 5,
