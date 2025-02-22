@@ -28,7 +28,7 @@ const Chat = () => {
             setHistory(chatHistory);
             if (chatHistory && chatHistory.length > 0) {
                 setIsFirst(false);
-            }
+            } else(setIsFirst(true))
         } catch (error) {
             console.error("Error al obtener historial:", error);
         }
@@ -36,6 +36,11 @@ const Chat = () => {
 
     useEffect(() => {
         if (chatId) {
+            setHistory([]);
+            setResponse(null);
+            setPrueba("");
+            setBackendErrors(null);
+            setLoading(false);
             fetchHistory();
         }
     }, [chatId]);

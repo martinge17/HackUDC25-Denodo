@@ -1,6 +1,6 @@
 import '../styles/Menu.css';
 import Button from "./Button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../app/actions";
 import { getChatIds } from "../../../backend/denodoService";
@@ -10,10 +10,15 @@ const Menu = ({ onClick }) => {
     const dispatch = useDispatch();
     const [chats, setChats] = useState([]);
     const id = useSelector(selectors.getChat);
+    const lastId = useSelector(selectors.getLastChat);
 
-    const handleClick = (chatId) => {
+    const handleClick = useCallback((chatId) => {
         dispatch(actions.changeChat(chatId));
-    };
+
+        if (chatId === lastId + 1) {
+            dispatch(actions.changeLastChat(chatId));
+        }
+    }, [dispatch, lastId]);
 
     const fetchChatIds = async () => {
         try {
@@ -32,7 +37,7 @@ const Menu = ({ onClick }) => {
 
     useEffect(() => {
         fetchChatIds();
-    }, []);
+    }, [id]);
 
     return (
         <div className="menu-container">
@@ -48,17 +53,22 @@ const Menu = ({ onClick }) => {
                             id={chatId}
                             textId={chatId}
                             onClick={() => handleClick(chatId)}
-                            isSelected={chatId === id }
+                            isSelected={chatId === id}
                         />
                     ))
                 ) : (
-                    <p>Cargando chats...</p>
+                    <Button
+                        key={0}
+                        id={1}
+                        textId={1}
+                        onClick={() => handleClick(1)}
+                        isSelected={true}
+                    />
                 )}
             </div>
 
             <div className="menu-profile">
-                <Button id="d" textId={'d'} onClick={handleClick} />
-                <Button id="e" textId={'e'} onClick={handleClick} />
+                <Button id="d" textId={'menu-new-chat'} onClick={() => handleClick(lastId + 1)} />
             </div>
         </div>
     );

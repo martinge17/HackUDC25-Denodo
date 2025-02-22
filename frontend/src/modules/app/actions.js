@@ -19,3 +19,10 @@ const changeChatCompleted = chat => ({
 })
 
 export const changeChat = (chat) => dispatch => dispatch(changeChatCompleted(chat))
+
+const changeLastChatCompleted = lastChat => ({
+    type: actionTypes.CHANGE_LAST_CHAT,
+    lastChat
+})
+
+export const changeLastChat = (lastChat) => dispatch => dispatch(changeLastChatCompleted(lastChat));

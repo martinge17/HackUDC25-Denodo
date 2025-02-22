@@ -141,12 +141,12 @@ export const getChatIds = async () => {
         });
 
         if (!response.ok) {
-            const errorText = await response.text(); // Captura el mensaje de error si lo hay
+            const errorText = await response.text();
             throw new Error(`Error HTTP ${response.status}: ${errorText}`);
         }
 
         const jsonResponse = await response.json();
-        return jsonResponse.chats; // ✅ Devuelve solo la lista de chat IDs
+        return jsonResponse.chats;
     } catch (error) {
         console.error("Error en la petición:", error);
         throw error;
