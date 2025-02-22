@@ -4,7 +4,7 @@
 set -x
 
 # Set environment variable for Docker ports
-DOCKER_PORTS=${DENODO_PORT:-8080:80}
+DOCKER_PORTS=${DENODO_PORT:-8080:8080}
 
 echo "-> Step 1: Building Docker image....."
 # Build latest app docker image
