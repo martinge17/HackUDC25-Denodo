@@ -6,6 +6,7 @@ const initialState = {
     loading: false,
     chat: 1,
     lastChat: 1,
+    menu: true,
 };
 
 const error = (state = initialState.error, action) => {
@@ -50,6 +51,20 @@ const lastChat = (state = initialState.lastChat, action) => {
 
 }
 
+const menu = (state = initialState.menu, action) => {
+
+    switch (action.type) {
+
+        case actionTypes.MENU:
+            return action.menu;
+
+        default:
+            return state;
+
+    }
+
+}
+
 const loading = (state = initialState.loading, action) => {
 
     switch (action.type) {
@@ -74,7 +89,8 @@ const reducer = combineReducers({
     error,
     loading,
     chat,
-    lastChat
+    lastChat,
+    menu
 });
 
 export default reducer;

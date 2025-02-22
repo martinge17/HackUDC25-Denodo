@@ -26,3 +26,10 @@ const changeLastChatCompleted = lastChat => ({
 })
 
 export const changeLastChat = (lastChat) => dispatch => dispatch(changeLastChatCompleted(lastChat));
+
+const menuCompleted = menu => ({
+    type: actionTypes.MENU,
+    menu
+})
+
+export const menu = (menu) => dispatch => dispatch(menuCompleted(menu));

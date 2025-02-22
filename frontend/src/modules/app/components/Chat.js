@@ -6,11 +6,14 @@ import { useEffect, useState } from "react";
 import Loader from "../../common/components/Loader";
 import ChatLine from "../../common/components/ChatLine";
 import { getChatHistory, answerQuestion } from "../../../backend/denodoService";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import * as selectors from '../selectors';
+import * as actions from "../actions";
 
 const Chat = () => {
     const chatId = useSelector(selectors.getChat);
+    const dispatch = useDispatch();
+    const menu = useSelector(selectors.menu);
 
     const [question, setQuestion] = useState("");
     const [isFirst, setIsFirst] = useState(true);
@@ -50,6 +53,7 @@ const Chat = () => {
         setResponse(null);
         setBackendErrors(null);
         try {
+            if (menu && isFirst) {dispatch(actions.menu(!menu))}
             const answer = await answerQuestion(chatId, question);
             setResponse(answer);
             setIsFirst(false);

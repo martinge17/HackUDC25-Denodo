@@ -6,19 +6,23 @@ import Menu from "../../common/components/Menu";
 import {useEffect, useState} from "react";
 import Button from "../../common/components/Button";
 import Chat from "./Chat";
+import {useDispatch, useSelector} from "react-redux";
+import * as selectors from "../selectors";
+import * as actions from "../actions";
 
 const Body = () => {
 
-    const[menu, setMenu] = useState(true)
+    const menu = useSelector(selectors.menu);
+    const dispatch = useDispatch();
 
     return (
         <div className={`body-container${menu ? "-menu" : ""}`}>
             <div className='menu'>
-                {menu ? <Menu onClick={() => setMenu(!menu)}></Menu> :
+                {menu ? <Menu onClick={() => dispatch(actions.menu(!menu))}></Menu> :
                     <Button
                         id="back"
                         textId={' '}
-                        onClick={() => setMenu(!menu)}
+                        onClick={() => dispatch(actions.menu(!menu))}
                     />
                 }
             </div>

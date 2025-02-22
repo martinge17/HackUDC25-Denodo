@@ -37,12 +37,12 @@ const Menu = ({ onClick }) => {
 
     useEffect(() => {
         fetchChatIds();
-    }, [id]);
+    }, [id, lastId]);
 
     return (
         <div className="menu-container">
             <div className="menu-cabecera">
-                <Button id="back" textId={' '} onClick={onClick} />
+                <Button id="back" textId={''} onClick={onClick} />
             </div>
 
             <div className="menu-options">
@@ -53,7 +53,7 @@ const Menu = ({ onClick }) => {
                             id={chatId}
                             textId={chatId}
                             onClick={() => handleClick(chatId)}
-                            isSelected={chatId === id}
+                            isSelected={String(chatId) === String(id)}
                         />
                     ))
                 ) : (
@@ -68,7 +68,7 @@ const Menu = ({ onClick }) => {
             </div>
 
             <div className="menu-profile">
-                <Button id="d" textId={'menu-new-chat'} onClick={() => handleClick(lastId + 1)} />
+                <Button id="d" textId={'Nuevo chat'} onClick={() => handleClick(lastId + 1)} />
             </div>
         </div>
     );

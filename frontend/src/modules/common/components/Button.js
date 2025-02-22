@@ -10,7 +10,7 @@ const Button = ({id, textId = "prueba", type = "button", onClick, isSelected = f
             type={type}
             onClick={onClick}
         >
-            <FormattedMessage id={textId}/>
+            {textId}
         </button>
     );
 };
