@@ -1,86 +1,121 @@
-import {FormattedMessage} from 'react-intl';
-import '../styles/Chat.css'
+import { FormattedMessage } from 'react-intl';
+import '../styles/Chat.css';
 import TextInput from "../../common/components/TextInput";
 import SendButton from "../../common/components/SendButton";
-import {useEffect, useState} from "react";
-import backend from "../../../backend";
+import { useEffect, useState } from "react";
 import Loader from "../../common/components/Loader";
 import ChatLine from "../../common/components/ChatLine";
+import { getChatHistory, answerQuestion } from "../../../backend/denodoService";
+import {useSelector} from "react-redux";
+import * as selectors from '../selectors';
 
 const Chat = () => {
+    const chatId = useSelector(selectors.getChat);
 
-    const [chatId, setChatId] = useState(0);
     const [question, setQuestion] = useState("");
     const [isFirst, setIsFirst] = useState(true);
 
+
+    const [history, setHistory] = useState([]);
     const [response, setResponse] = useState(null);
     const [backendErrors, setBackendErrors] = useState(null);
     const [loading, setLoading] = useState(false);
-
     const [prueba, setPrueba] = useState("");
 
+    const fetchHistory = async () => {
+        try {
+            const chatHistory = await getChatHistory(chatId);
+            setHistory(chatHistory);
+            if (chatHistory && chatHistory.length > 0) {
+                setIsFirst(false);
+            }
+        } catch (error) {
+            console.error("Error al obtener historial:", error);
+        }
+    };
+
     useEffect(() => {
-        //función que mira si el chat tiene contenido, si lo tiene, pone isFirst a false
+        if (chatId) {
+            fetchHistory();
+        }
     }, [chatId]);
 
     const handleQuestion = async (question) => {
         setLoading(true);
         setResponse(null);
         setBackendErrors(null);
-
         try {
-            const response = await backend.denodoService.answerQuestion(question);
-            console.log(response);
-            setResponse(response);
+            const answer = await answerQuestion(chatId, question);
+            setResponse(answer);
             setIsFirst(false);
         } catch (errors) {
-            console.log(errors);
+            console.error(errors);
             setBackendErrors(errors);
         } finally {
             setLoading(false);
             setPrueba(question);
-            setQuestion("")
+            setQuestion("");
+            fetchHistory();
         }
     };
 
-
     return (
         <div className="chat-container">
-
             <div className={`${isFirst ? "chat-container-textinput-first" : "chat-container-textinput"}`}>
-                {loading && <Loader loading/>}
-
-                {!loading &&
-
-                    <div className="chat-container-chats">
-                        {response != null &&
-                            <div className="request">
-                                <ChatLine texto={prueba} rigth={true}></ChatLine>
-                                <ChatLine texto={response}></ChatLine>
+                <div className="chat-container-chats">
+                    {
+                        // Si no hay mensajes y se está cargando (primer mensaje) se muestra el spinner centrado
+                        loading && history.length === 0 ? (
+                            <div className="loader-center">
+                                <Loader loading />
                             </div>
-                        }
-                    </div>
-
-                }
-
-                {!loading &&
-
-                    <div className={`${isFirst ? "chat-textinput-first" : "chat-textinput"}`}>
-                        <TextInput
-                            color={true}
-                            onChange={setQuestion}
-                            placeholder="Type your question here."
-                            value={question}
-                        />
-                        {!loading &&
-                            <SendButton onClick={() => handleQuestion(question)}/>
-                        }
-                    </div>
-
+                        ) : (
+                            // Si hay historial, se renderiza cada mensaje
+                            history && history.length > 0 ? (
+                                history.map((msg) => (
+                                    <div key={msg.msg_id} className="request">
+                                        <ChatLine texto={msg.pregunta} rigth={true} />
+                                        <ChatLine texto={msg.respuesta} rigth={false} />
+                                    </div>
+                                ))
+                            ) : (
+                                // Si no hay historial pero ya se obtuvo una respuesta (primer mensaje enviado)
+                                response != null && (
+                                    <div className="request">
+                                        <ChatLine texto={prueba} rigth={true} />
+                                        <ChatLine texto={response} rigth={false} />
+                                    </div>
+                                )
+                            )
+                        )
+                    }
+                </div>
+                {
+                    // El área del input se muestra solo si NO estamos en el primer mensaje y cargando.
+                    // Es decir: si es el primer mensaje y se está cargando, se oculta el input.
+                    !(loading && history.length === 0) && (
+                        <div className={`${isFirst ? "chat-textinput-first" : "chat-textinput"}`}>
+                            <TextInput
+                                color={true}
+                                onChange={setQuestion}
+                                placeholder="Type your question here."
+                                value={question}
+                            />
+                            {
+                                history && history.length > 0 ? (
+                                    loading
+                                        ? <Loader loading />
+                                        : <SendButton onClick={() => handleQuestion(question)} />
+                                ) : (
+                                    loading
+                                        ? null
+                                        : <SendButton onClick={() => handleQuestion(question)} />
+                                )
+                            }
+                        </div>
+                    )
                 }
             </div>
-
-
         </div>
     );
 };

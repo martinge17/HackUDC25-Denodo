@@ -3,7 +3,7 @@ import AppGlobalComponents from "./AppGlobalComponents";
 
 import '../styles/Body.css'
 import Menu from "../../common/components/Menu";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Button from "../../common/components/Button";
 import Chat from "./Chat";
 

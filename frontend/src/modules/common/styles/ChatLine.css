@@ -1,6 +1,7 @@
 .styled-box-right {
     border: 2px solid transparent;
-    width: 60%;
+    width: auto;
+    max-width: 60%;
     height: auto;
     padding: 0.5em;
     display: flex;

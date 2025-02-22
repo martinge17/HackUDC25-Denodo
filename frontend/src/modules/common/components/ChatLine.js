@@ -1,18 +1,3 @@
-// import React from "react";
-// import ReactMarkdown from "react-markdown";
-// import remarkGfm from "remark-gfm";
-// import "../styles/ChatLine.css"
-//
-// const ChatLine = ({ texto, rigth = false }) => {
-//     return <div className={`${rigth ? "styled-box-right" : "styled-box-left"}`}>
-//         <ReactMarkdown className="markdown-content" remarkPlugins={[remarkGfm]}>
-//             {texto}
-//         </ReactMarkdown>
-//     </div>;
-// };
-//
-// export default ChatLine;
-
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
