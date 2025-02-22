@@ -5,6 +5,7 @@ import SendButton from "../../common/components/SendButton";
 import {useEffect, useState} from "react";
 import backend from "../../../backend";
 import Loader from "../../common/components/Loader";
+import ChatLine from "../../common/components/ChatLine";
 
 const Chat = () => {
 
@@ -15,6 +16,8 @@ const Chat = () => {
     const [response, setResponse] = useState(null);
     const [backendErrors, setBackendErrors] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const [prueba, setPrueba] = useState("");
 
     useEffect(() => {
         //función que mira si el chat tiene contenido, si lo tiene, pone isFirst a false
@@ -35,6 +38,8 @@ const Chat = () => {
             setBackendErrors(errors);
         } finally {
             setLoading(false);
+            setPrueba(question);
+            setQuestion("")
         }
     };
 
@@ -44,6 +49,19 @@ const Chat = () => {
 
             <div className={`${isFirst ? "chat-container-textinput-first" : "chat-container-textinput"}`}>
                 {loading && <Loader loading/>}
+
+                {!loading &&
+
+                    <div className="chat-container-chats">
+                        {response != null &&
+                            <div className="request">
+                                <ChatLine texto={prueba} rigth={true}></ChatLine>
+                                <ChatLine texto={response}></ChatLine>
+                            </div>
+                        }
+                    </div>
+
+                }
 
                 {!loading &&
 

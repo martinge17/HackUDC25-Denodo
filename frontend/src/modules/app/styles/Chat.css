@@ -23,6 +23,13 @@
 
 }
 
+.chat-container-chats {
+    grid-area: chat;
+    box-sizing: border-box;
+    padding: 10px;
+    overflow: scroll;
+}
+
 .chat-textinput-first {
     box-sizing: border-box;
     padding-left: 10%;
