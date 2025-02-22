@@ -12,8 +12,5 @@ RUN npm install
 # Copy the remaining of files
 COPY . .
 
-# Expose the port
-EXPOSE 8080
-
 # Run the APP (DEVELOPMENT ONLY)
 CMD ["npm","start"]
