@@ -1,0 +1,18 @@
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: [self-hosted]
+    steps:
+    - name: Check out
+      uses: actions/checkout@v4
+
+    - name: Run deployment script on port
+      shell: bash
+      run: |
+        cd frontend
+        chmod +x deploy.sh
+        DENODO_PORT=${{ vars.DENODO_PORT }} ./deploy.sh
