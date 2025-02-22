@@ -1,6 +1,6 @@
 import '../styles/TextInput.css'
 
-const TextInput = ({id, value, onChange, placeholder = "", rows = 3, required = false, color = false}) => (
+const TextInput = ({id, value, onChange, placeholder = "", rows = 3, required = false, color = false}, auto = false) => (
     <div className="card">
         <div className={color ? "bg" : ""}></div>
         <div className="content">

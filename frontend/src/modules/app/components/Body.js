@@ -2,16 +2,14 @@ import {Route, Routes} from "react-router-dom";
 import AppGlobalComponents from "./AppGlobalComponents";
 
 import '../styles/Body.css'
-import TextInput from "../../common/components/TextInput";
-import SendButton from "../../common/components/SendButton";
 import Menu from "../../common/components/Menu";
 import {useState} from "react";
 import Button from "../../common/components/Button";
+import Chat from "./Chat";
 
 const Body = () => {
 
     const[menu, setMenu] = useState(true)
-    const [prueba, setPrueba] = useState('');
 
     return (
         <div className={`body-container${menu ? "-menu" : ""}`}>
@@ -29,18 +27,7 @@ const Body = () => {
                 <AppGlobalComponents/>
                 <Routes>
 
-                    <Route path="/*" element={
-                        <div className="pruebas">
-                            <TextInput
-                                color={true}
-                                onChange={setPrueba}
-                                placeholder="Type your question here."
-                                value={prueba}
-                            >
-                            </TextInput>
-                            <SendButton onClick={() => setPrueba("")}></SendButton>
-                        </div>
-                    }/>
+                    <Route path="/*" element={<Chat/>}/>
 
                 </Routes>
             </div>
