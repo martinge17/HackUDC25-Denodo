@@ -27,7 +27,6 @@ Este proyecto es una aplicación web desarrollada con React utilizando `create-r
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/tu-repositorio/frontend.git
 cd frontend
 
 # Instalar dependencias
@@ -36,8 +35,6 @@ npm install
 # Ejecutar en modo desarrollo
 npm start
 ```
-
-Si se requiere una configuración especial (variables de entorno, archivos de configuración), debes mencionarlo.
 
 ---
 

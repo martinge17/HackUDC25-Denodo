@@ -15,7 +15,6 @@ Este backend está desarrollado en **Flask** y proporciona un servicio REST para
 ### **2️⃣ Instalación**
 ```bash
 # Clonar el repositorio
-git clone https://github.com/tu-repositorio/backend.git
 cd backend
 
 # Crear un entorno virtual (opcional pero recomendado)
@@ -24,15 +23,6 @@ source venv/bin/activate  # En Windows: venv\Scripts\activate
 
 # Instalar dependencias
 pip install -r requirements.txt
-```
-
-### **3️⃣ Configuración de Variables de Entorno**
-Antes de ejecutar el backend, se deben configurar las siguientes variables de entorno:
-
-```bash
-export DENODO_URL="http://localhost:8008/answerQuestion"
-export USER="admin"
-export PASS="admin"
 ```
 
 ### **4️⃣ Ejecución del Servidor**
@@ -150,12 +140,3 @@ Los parámetros enviados incluyen información sobre la consulta y la base de da
 - Si la base de datos tiene un problema, se captura la excepción y se devuelve una respuesta con el error.
 
 ---
-
-## ✅ **Conclusión**
-✔ Se proporciona un backend en Flask para interactuar con Denodo y almacenar el historial de chats.
-✔ Se utiliza SQLite como base de datos local.
-✔ Se exponen endpoints para enviar mensajes, consultar historiales y obtener chats disponibles.
-✔ Se maneja correctamente la conexión con Denodo y los errores de la API.
-
-🚀 **Este backend permite gestionar preguntas y respuestas de manera eficiente y escalable.**
-
