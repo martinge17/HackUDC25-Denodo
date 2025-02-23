@@ -62,7 +62,7 @@ def send_message():
             "chat_provider": "googleaistudio",
             "chat_model": "gemini-2.0-flash",
             "vdp_database_names": "jjoo",
-            "custom_instructions": "Eres un experto en los juegos olimpicos de 2024 y tambien en realizar consultas sql muy precisas",
+            "custom_instructions": "Eres un experto en los juegos olimpicos de 2024 y tambien en realizar consultas sql muy precisas. La base de datos de llama 'jjoo'",
             "expand_set_views": True,
             "markdown_response": True,
             "vector_search_k": 5,
