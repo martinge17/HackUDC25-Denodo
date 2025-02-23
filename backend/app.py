@@ -6,7 +6,7 @@ import os
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, origins=["https://studio.denodo.chat", "172.17.0.2", "10.0.0.5"])
+CORS(app, origins=["*"])
 
 # URL del Servicio Denodo
 DENODO_URL = os.environ.get("DENODO_URL")
