@@ -114,14 +114,23 @@ const Chat = () => {
                                 history && history.length > 0 ? (
                                     loading
                                         ? <Loader loading />
-                                        : <SendButton onClick={() => handleQuestion(question)} />
+                                        : <SendButton onClick={() => {
+                                            if (question.trim() !== "") {
+                                                handleQuestion(question);
+                                            }
+                                        }} />
                                 ) : (
                                     loading
                                         ? null
-                                        : <SendButton onClick={() => handleQuestion(question)} />
+                                        : <SendButton onClick={() => {
+                                            if (question.trim() !== "") {
+                                                handleQuestion(question);
+                                            }
+                                        }} />
                                 )
                             }
                         </div>
+
                     )
                 }
             </div>
