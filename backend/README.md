@@ -11,6 +11,7 @@ Este backend está desarrollado en **Flask** y proporciona un servicio REST para
 - Python 3.x
 - Virtualenv (opcional pero recomendado)
 - Dependencias listadas en `requirements.txt`
+- Instalacion de denodo y ai-sdk
 
 ### **2️⃣ Instalación**
 ```bash
