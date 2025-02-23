@@ -61,7 +61,7 @@ def send_message():
             "sql_gen_model": "gemini-2.0-flash",
             "chat_provider": "googleaistudio",
             "chat_model": "gemini-2.0-flash",
-            "vdp_database_names": "samples_bank",
+            "vdp_database_names": "jjoo",
             "custom_instructions": "Eres un experto en los juegos olimpicos de 2024 y tambien en realizar consultas sql muy precisas",
             "expand_set_views": True,
             "markdown_response": True,
