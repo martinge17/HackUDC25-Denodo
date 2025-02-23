@@ -1,6 +1,6 @@
 export const answerQuestion = async (chatId, question) => {
     try {
-        const response = await fetch(`http://localhost/send`, {
+        const response = await fetch(`http://localhost:5000/send`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -29,7 +29,7 @@ export const answerQuestion = async (chatId, question) => {
 
 export const getChatHistory = async (chatId) => {
     try {
-        const response = await fetch(`http://localhost/history/${chatId}`, {
+        const response = await fetch(`http://localhost:5000/history/${chatId}`, {
             method: "GET",
             headers: {
                 "Accept": "application/json"
@@ -51,7 +51,7 @@ export const getChatHistory = async (chatId) => {
 
 export const getChatIds = async () => {
     try {
-        const response = await fetch(`http://localhost/chats`, {
+        const response = await fetch(`http://localhost:5000/chats`, {
             method: "GET",
             headers: {
                 "Accept": "application/json"

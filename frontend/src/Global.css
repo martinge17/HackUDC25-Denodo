@@ -55,3 +55,14 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+::-webkit-scrollbar {
+    width: 10px; /* Puedes poner 0 si quieres ocultarla totalmente */
+}
+::-webkit-scrollbar-track {
+background: var(--color-secondary-medium);
+}
+::-webkit-scrollbar-thumb {
+background: var(--color-secondary-medium);
+border-radius: 10px; /* Opcional, para suavizar los bordes */
+}

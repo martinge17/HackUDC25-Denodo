@@ -9,3 +9,6 @@
 
 # Node
 node_modules/
+
+backend/venv_backend/
+frontend/venv_frontend/
