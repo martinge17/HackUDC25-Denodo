@@ -42,7 +42,7 @@
 
 export const answerQuestion = async (chatId, question) => {
     try {
-        const response = await fetch(`http://10.0.0.5:8888/send`, {
+        const response = await fetch(`http://100.86.28.10:8888/send`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -71,7 +71,7 @@ export const answerQuestion = async (chatId, question) => {
 
 export const getChatHistory = async (chatId) => {
     try {
-        const response = await fetch(`http://10.0.0.5:8888/history/${chatId}`, {
+        const response = await fetch(`http://100.86.28.10:8888/history/${chatId}`, {
             method: "GET",
             headers: {
                 "Accept": "application/json"
@@ -93,7 +93,7 @@ export const getChatHistory = async (chatId) => {
 
 export const getChatIds = async () => {
     try {
-        const response = await fetch(`http://10.0.0.5:8888/chats`, {
+        const response = await fetch(`http://100.86.28.10:8888/chats`, {
             method: "GET",
             headers: {
                 "Accept": "application/json"
