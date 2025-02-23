@@ -17,14 +17,10 @@ echo "-> Step 2: Stopping and removing old docker containers..."
 # Stop and remove current docker container (if it does not exists, skip)
 docker stop denodo-chat-back || true && docker rm denodo-chat-back || true
 
-echo ${DENODO_URL}
-echo ${USER}
-echo ${PASS}
-
 echo "-> Step 2 Done"
 
 echo "-> Step 3: Running latest version...."
 # Run latest version (previously created image)
-docker run -d --name denodo-chat-back --env DENODO_URL=${DENODO_URL} USER=${USER} PASS=${PASS}  -p $DOCKER_PORTS localhost/denodo-chat-backend-latest
+docker run -d --name denodo-chat-back --env-file /home/hackudc25/.env -p $DOCKER_PORTS localhost/denodo-chat-backend-latest
 
 echo "-> Step 3 Completed: Latest version deployed!"
