@@ -34,18 +34,17 @@ pip install -r requirements.txt
 # Configuración y Uso
 1. Generación de Relaciones entre CSV
 Utiliza el script databaseRelations-generator.py para analizar los archivos CSV y obtener un reporte de las relaciones entre ellos.
-
-bash
-Copiar
+´´´
 python client/scripts/databaseRelations-generator.py <directorio_csv>
+´´´
 Parámetro:
 <directorio_csv>: Ruta al directorio que contiene los archivos CSV (por defecto, se usa ./jjoo en otros scripts).
-2. Generación Interactiva de Vistas con Chatbot
+3. Generación Interactiva de Vistas con Chatbot
 Ejecuta chatbot-vql.py para iniciar el proceso interactivo de generación de vistas:
 
-bash
-Copiar
+´´´
 python client/scripts/chatbot-vql.py
+´´´
 Durante la ejecución se te solicitará:
 
 Proveer el contexto de la base de datos.
@@ -59,9 +58,9 @@ Con description-generator.py puedes procesar cada archivo CSV para:
 Obtener una muestra de datos (cabecera y filas de ejemplo).
 Construir un prompt para inferir tipos de datos y descripciones de columnas.
 Generar un script VQL que define la datasource, wrapper y tabla en Denodo.
-bash
-Copiar
+´´´
 python client/scripts/description-generator.py
+´´´
 Cada archivo VQL generado se guardará en ./vql_output.
 
 4. Importación Automática de VQL a Denodo
