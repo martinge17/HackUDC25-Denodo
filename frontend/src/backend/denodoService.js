@@ -1,43 +1,3 @@
-export const streamAnswerQuestion = async (question) => {
-    const params = new URLSearchParams({
-        question,
-        plot: false,
-        embeddings_provider: "googleaistudio",
-        embeddings_model: "models/text-embedding-004",
-        vector_store_provider: "Chroma",
-        sql_gen_provider: "googleaistudio",
-        sql_gen_model: "gemini-1.5-flash",
-        chat_provider: "googleaistudio",
-        chat_model: "gemini-1.5-flash",
-        vdp_database_names: "samples_bank",
-        expand_set_views: true,
-        markdown_response: true,
-        vector_search_k: 5,
-        mode: "default",
-        disclaimer: true,
-        verbose: true
-    }).toString();
-
-    const credentials = btoa("admin:admin");
-
-    try {
-        const response = await fetch(`http://localhost:8008/streamAnswerQuestion?${params}`, {
-            method: 'GET',
-            headers: {
-                "Accept": "*/*",
-                "Authorization": `Basic ${credentials}`
-            }
-        });
-
-        const textResponse = await response.text();
-
-        return textResponse;
-
-    } catch (error) {
-        throw error;
-    }
-};
-
 // export const answerQuestion = async (question) => {
 //     const params = new URLSearchParams({
 //         question,
@@ -82,7 +42,7 @@ export const streamAnswerQuestion = async (question) => {
 
 export const answerQuestion = async (chatId, question) => {
     try {
-        const response = await fetch(`http://localhost/send`, {
+        const response = await fetch(`http://10.0.0.5:8888/send`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -111,7 +71,7 @@ export const answerQuestion = async (chatId, question) => {
 
 export const getChatHistory = async (chatId) => {
     try {
-        const response = await fetch(`http://localhost/history/${chatId}`, {
+        const response = await fetch(`http://10.0.0.5:8888/history/${chatId}`, {
             method: "GET",
             headers: {
                 "Accept": "application/json"
@@ -133,7 +93,7 @@ export const getChatHistory = async (chatId) => {
 
 export const getChatIds = async () => {
     try {
-        const response = await fetch(`http://localhost/chats`, {
+        const response = await fetch(`http://10.0.0.5:8888/chats`, {
             method: "GET",
             headers: {
                 "Accept": "application/json"
