@@ -20,4 +20,8 @@ Si deseas contribuir a este proyecto, por favor revisa las directrices de contri
 
 ## Licencia
 
-_Agrega aquí la información de la licencia correspondiente, si aplica._
+Escogemos la licencia AGPL por los siguientes motivos:
+
+- Aunque pueda parecer contradictorio, consideramos que el software libre debería permanecer "accesible" y "disponible" para todo el mundo, limitando la posibilidad de que versiones mejoradas del mismo queden fuera del alcance del público (software privativo).
+- Tal como indicamos anteriormente, creemos que la comunidad tiene derecho a beneficiarse de las nuevas mejoras y modificaciones que se hagan, incrementando constantemente su calidad.
+- Por último, dada la naturaleza de este tipo de software (clientes web sobre recursos remotos), creemos que en la mayoría de los casos se proporcionará directamente como servicio al usuario mediante la web (esquivando la distribución tradicional), y la licencia _Affero General Public License_ cubre este caso en concreto.
