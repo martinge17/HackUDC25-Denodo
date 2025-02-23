@@ -1,4 +1,4 @@
-# HackUDC25-Denodo
+# HackUDC25-Denodo 
 
 Este repositorio contiene el proyecto completo para HackUDC25-Denodo, el cual está dividido en tres componentes principales:
 
@@ -18,9 +18,9 @@ Para mayor detalle sobre cada parte del proyecto, consulta los siguientes readme
 
 Si deseas contribuir a este proyecto, por favor revisa las directrices de contribución en cada uno de los repositorios o contacta con los mantenedores para más información.
 
-## Licencia
+## Licencia <img src="https://img.shields.io/github/license/martinge17/HackUDC25-Denodo">
 
-Escogemos la licencia AGPL por los siguientes motivos:
+Escogemos la licencia AGPL  por los siguientes motivos:
 
 - Aunque pueda parecer contradictorio, consideramos que el software libre debería permanecer "accesible" y "disponible" para todo el mundo, limitando la posibilidad de que versiones mejoradas del mismo queden fuera del alcance del público (software privativo).
 - Tal como indicamos anteriormente, creemos que la comunidad tiene derecho a beneficiarse de las nuevas mejoras y modificaciones que se hagan, incrementando constantemente su calidad.
