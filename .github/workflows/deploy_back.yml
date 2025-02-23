@@ -12,16 +12,9 @@ jobs:
     - name: Check out
       uses: actions/checkout@v4
 
-    - name: Debug
-      shell: bash
-      run: |
-        echo ${{ vars.DENODO_URL }}
-        echo ${{ secrets.USER }}
-        echo ${{ secrets.PASS }}
-
     - name: Run deployment script on port
       shell: bash
       run: |
         cd backend
         chmod +x deploy.sh
-        DENODO_URL=${{ vars.DENODO_URL }} USER=${{ secrets.USER }} PASS=${{ secrets.PASS }} ./deploy.sh
+        ./deploy.sh
