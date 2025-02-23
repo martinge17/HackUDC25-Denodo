@@ -10,5 +10,7 @@
 # Node
 node_modules/
 
+# VQL Generator
+scripts/vql_output/
 backend/venv_backend/
 frontend/venv_frontend/
